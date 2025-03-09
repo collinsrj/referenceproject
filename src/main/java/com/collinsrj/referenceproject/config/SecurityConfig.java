@@ -17,13 +17,12 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Security configuration class for the application.
  *
- * <p>
- * This class configures Spring Security for the reactive web application, including:
+ * <p>This class configures Spring Security for the reactive web application, including:
  *
  * <ul>
- * <li>Web security configuration
- * <li>Password encoding
- * <li>User details service
+ *   <li>Web security configuration
+ *   <li>Password encoding
+ *   <li>User details service
  * </ul>
  *
  * @author collinsrj
@@ -38,13 +37,12 @@ public class SecurityConfig {
   /**
    * Configures the security filter chain for the application.
    *
-   * <p>
-   * This method sets up the security configuration including:
+   * <p>This method sets up the security configuration including:
    *
    * <ul>
-   * <li>CSRF protection settings
-   * <li>Authorization rules
-   * <li>HTTP basic authentication
+   *   <li>CSRF protection settings
+   *   <li>Authorization rules
+   *   <li>HTTP basic authentication
    * </ul>
    *
    * @param http the ServerHttpSecurity to configure
@@ -58,10 +56,15 @@ public class SecurityConfig {
         // 2. You're using session-based authentication
         // 3. You're using cookies to maintain state
         .csrf(ServerHttpSecurity.CsrfSpec::disable) // Disable CSRF for this example
-        .authorizeExchange(exchanges -> exchanges.pathMatchers("/actuator/**").permitAll() // Allow
-                                                                                           // actuator
-                                                                                           // endpoints
-            .anyExchange().authenticated())
+        .authorizeExchange(
+            exchanges ->
+                exchanges
+                    .pathMatchers("/actuator/**")
+                    .permitAll() // Allow
+                    // actuator
+                    // endpoints
+                    .anyExchange()
+                    .authenticated())
         .httpBasic(Customizer.withDefaults());
 
     return http.build();
@@ -80,12 +83,11 @@ public class SecurityConfig {
   /**
    * Configures the user details service with in-memory users.
    *
-   * <p>
-   * Creates two default users:
+   * <p>Creates two default users:
    *
    * <ul>
-   * <li>A regular user with USER role
-   * <li>An admin user with USER and ADMIN roles
+   *   <li>A regular user with USER role
+   *   <li>An admin user with USER and ADMIN roles
    * </ul>
    *
    * @param passwordEncoder the password encoder to use for encoding passwords
@@ -93,11 +95,19 @@ public class SecurityConfig {
    */
   @Bean
   public MapReactiveUserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-    UserDetails user = User.builder().username("user").password(passwordEncoder.encode("password"))
-        .roles("USER").build();
+    UserDetails user =
+        User.builder()
+            .username("user")
+            .password(passwordEncoder.encode("password"))
+            .roles("USER")
+            .build();
 
-    UserDetails admin = User.builder().username("admin").password(passwordEncoder.encode("admin"))
-        .roles("USER", "ADMIN").build();
+    UserDetails admin =
+        User.builder()
+            .username("admin")
+            .password(passwordEncoder.encode("admin"))
+            .roles("USER", "ADMIN")
+            .build();
 
     return new MapReactiveUserDetailsService(user, admin);
   }
