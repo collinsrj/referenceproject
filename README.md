@@ -4,12 +4,13 @@
 [![CodeQL](https://github.com/collinsrj/referenceproject/actions/workflows/codeql.yml/badge.svg)](https://github.com/collinsrj/referenceproject/actions/workflows/codeql.yml)
 
 A reference Spring Boot project demonstrating:
-- Spring WebFlux
-- Spring Security
-- Unit Testing
-- Code Quality Tools (SpotBugs, JaCoCo, OWASP Dependency Check)
-- GitHub Actions CI/CD
-- CodeQL Security Analysis
+- Reactive Web with WebFlux
+- Security with JWT authentication
+- Dependency scanning with OWASP
+- Code quality with SpotBugs
+- Code coverage with JaCoCo
+- Automated dependency updates with Dependabot
+- Code analysis with CodeQL
 
 ## Building
 
@@ -36,7 +37,7 @@ After building, the following reports are available:
 - JaCoCo Coverage: `target/site/jacoco/index.html`
 - OWASP Dependency Check: `target/dependency-check-report.html`
 - SpotBugs: `target/spotbugs/spotbugs.html`
-- CodeQL: Available in GitHub Security tab 
+- CodeQL: Available in GitHub Security tab
 
 ## Dependency Management
 
@@ -48,4 +49,4 @@ This project uses GitHub's Dependabot to keep dependencies up to date. Dependabo
 - Ignore patch updates for Spring Boot dependencies
 - Include scope information in commit messages
 
-Pull requests from Dependabot will be labeled with either `dependencies` for Maven updates or `github-actions` for workflow updates. 
+Pull requests from Dependabot will be labeled with either `dependencies` for Maven updates or `github-actions` for workflow updates.
