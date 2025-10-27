@@ -26,13 +26,13 @@ jobs:
         NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         
     - name: Upload JaCoCo coverage report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: jacoco-report
         path: target/site/jacoco/
         
     - name: Upload OWASP dependency check report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: dependency-check-report
         path: target/dependency-check-report.html
